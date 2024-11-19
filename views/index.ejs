@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/output.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+
+</head>
+
+<body class="bg-zinc-900">
+
+    <div class="min-h-screen mx-[2rem] flex flex-col gap-[2rem] justify-center items-center">
+        <!-- First Section -->
+        <div class="">
+            <span id="notes-welc"></span>
+        </div>
+        <div class="w-full md:w-[50rem]">
+            <div class="">
+                <form action="/create" method="post" class="flex items-center flex-col gap-4">
+                    <input
+                        class="w-full h-[4rem] border-none outline-none px-[10px] py-[4px] bg-zinc-800 rounded-xl text-zinc-500 caret-zinc-500 placeholder:opacity-60"
+                        type="text" placeholder="Title goes here.." required name="title">
+                    <textarea
+                        class="w-full min-h-[8rem] border-none outline-none px-[10px] py-[10px] bg-zinc-800 rounded-xl text-zinc-500 caret-zinc-500 placeholder:opacity-60"
+                        name="details" id="textarea" placeholder="Write your task details here...." required></textarea>
+                    <button class="bg-zinc-800 px-[2rem] py-[10px] rounded-xl text-zinc-500 active:scale-90"
+                        type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Second Section (Three Cards) -->
+        <div class="flex flex-wrap w-full justify-center gap-[1rem]">
+            <% if (files.length > 0) { %>
+                <% files.forEach(file => { %>
+                    <div class="bg-zinc-800 p-[1rem] w-full sm:w-72 rounded-lg">
+                        <div class="h-full flex flex-col justify-between">
+                            <div>
+                                <div class="flex justify-between items-center">
+                                <h1 class="text-zinc-500 text-lg font-bold"><%= file %></h1>
+                                <a href="/removefile/<%= file %>">
+                                    <i class="text-zinc-500 bi bi-x text-xl cursor-pointer"></i>
+                                </a>                                
+                                </div>
+                                <p class="text-zinc-500">Content for the first card goes here.</p>
+                            </div>
+                            <div class="flex items-center">
+                                <a class="mt-3 cursor-pointer text-zinc-500" href="/files/<%= file %>">Readmore</a>
+                                <i class="mt-3 text-[18px] bi bi-arrow-right-short text-zinc-500"></i>
+                            </div>
+                        </div>
+                    </div>
+                <% }) %>
+            <% } else { %>
+                <h2 class="text-zinc-500 italic">No Tasks Yet</h2>
+            <% } %>
+        </div>
+        
+    </div>
+
+
+    <script src="./javascripts/script.js"></script>
+</body>
+
+</html>
