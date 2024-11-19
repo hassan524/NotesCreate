@@ -1,8 +1,2 @@
-# ignore node modules
-
-node_modules
-
-# Ignore output.css
-
+node_modules/
 public/stylesheets/output.css
-
