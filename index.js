@@ -8,6 +8,7 @@ app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'public')));
 
+// routers 
 
 app.get("/", (req, res) => {
     fs.readdir('./files', function (err, files) {
