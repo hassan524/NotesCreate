@@ -14,6 +14,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // routers 
 
 app.get("/", (req, res) => {
+    
     fs.readdir('./files', function (err, files) {
         if (err) {
             console.log(err);
@@ -22,13 +23,13 @@ app.get("/", (req, res) => {
         const filenames = files.map(file => file.replace('.txt', ''));
         res.render('index', { files: filenames });
     });
+    
 });;
 
 
 app.post('/create', (req, res) => {
     fs.writeFile(`./files/${req.body.title.split(' ').join('')}.txt`, req.body.details, () => {
         res.redirect('/')
-
     })
 })
 app.get("/files/:name", (req, res) => {
